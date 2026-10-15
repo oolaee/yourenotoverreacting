@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Should I Worry? | Free Symptom Guide App for Parents</title>
+<meta name="description" content="Should I Worry? is a free iPhone symptom guide for parents from ER physician Dr. Oliver Morris, DO.">
+<link rel="canonical" href="https://yourenotoverreacting.com/app.html">
+<meta property="og:type" content="book">
+<meta property="og:title" content="You're Not Overreacting: An ER Doctor's Guide for New Parents">
+<meta property="og:description" content="What's normal, what's not, and when to get care for your baby. New 2nd Edition, updated for 2026.">
+<meta property="og:image" content="https://yourenotoverreacting.com/assets/og-image.jpg">
+<meta property="og:url" content="https://yourenotoverreacting.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1d3461">
+<link rel="icon" href="app-icon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Should I Worry?","operatingSystem":"iOS","applicationCategory":"HealthApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://apps.apple.com/us/app/should-i-worry/id6761658186"}</script>
+<style>
+:root{--navy:#1d3461;--navy2:#2b4a80;--deep:#13233f;--gold:#f2b33d;--cream:#fbf7f0;--paper:#f4ede1;--ink:#1f2430;--muted:#5d6475;--line:#e4dccd;
+ --sage:#3f8f6b;--teal:#2a7f9e;--amber:#c27c0e;--coral:#c8443a;--red:#a3201b}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Source Sans 3",system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;font-size:18px;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.serif{font-family:"Fraunces",Georgia,serif;line-height:1.12;letter-spacing:-.01em}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.kicker{font-weight:800;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 28px;border-radius:999px;font-weight:800;font-size:18px;text-decoration:none;border:0;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:var(--navy);box-shadow:0 10px 28px rgba(242,179,61,.35)}
+.btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.4)}
+.btn-navy{background:var(--navy);color:#fff}
+.price{font-weight:800}
+.price s{opacity:.55;font-weight:600;margin-right:6px}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:rgba(19,35,63,.94);backdrop-filter:saturate(1.4) blur(8px);color:#fff}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.brand{font-family:"Fraunces",serif;font-weight:700;font-size:20px;text-decoration:none;white-space:nowrap}
+.brand span{color:var(--gold)}
+nav{display:flex;gap:22px;font-weight:600;font-size:15px}
+nav a{text-decoration:none;opacity:.85}
+nav a:hover{opacity:1}
+header .btn{padding:10px 18px;font-size:15px;white-space:nowrap}
+@media(max-width:420px){header .btn{padding:9px 14px;font-size:14px}.brand{font-size:17px}}
+@media(max-width:860px){nav{display:none}}
+
+/* hero */
+.hero{position:relative;background:var(--deep);color:#fff;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:url(assets/hero-art.jpg) right center/auto 100% no-repeat;opacity:.5}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--deep) 30%,rgba(19,35,63,.75) 60%,rgba(19,35,63,.35))}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding-top:64px;padding-bottom:72px}
+.hero .kicker{color:var(--gold)}
+.hero h1{font-size:clamp(44px,6.4vw,76px);margin:14px 0 18px;font-weight:700}
+.hero h1 span{color:var(--gold);display:block}
+.hero .lead{font-size:clamp(19px,2.2vw,22px);color:#e3e9f5;max-width:560px}
+.checks{list-style:none;margin:24px 0 30px;display:grid;gap:10px}
+.checks li{position:relative;padding-left:34px;color:#eef2fa}
+.checks li:before{content:"";position:absolute;left:0;top:5px;width:20px;height:20px;border-radius:50%;background:var(--gold) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3L15 6.5' fill='none' stroke='%231d3461' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.cta-note{font-size:14px;color:#c6d0e3;margin-top:12px}
+.book3d{perspective:1800px;display:flex;justify-content:center}
+.book3d .book{width:min(340px,80%);aspect-ratio:760/984;transform:rotateY(-18deg) rotateX(3deg);border-radius:4px 10px 10px 4px;overflow:hidden;
+ box-shadow:14px 14px 0 -3px #ece3d1,16px 16px 0 -3px #d9cfbb,30px 38px 60px rgba(0,0,0,.55);animation:float 7s ease-in-out infinite}
+.book3d .book img{width:100%;height:100%;object-fit:cover}
+@keyframes float{0%,100%{transform:rotateY(-18deg) rotateX(3deg) translateY(0)}50%{transform:rotateY(-15deg) rotateX(2deg) translateY(-10px)}}
+@media(max-width:860px){.hero:before{background-image:url(assets/hero-art-mobile.jpg);background-size:cover;background-position:center;opacity:.28}
+ .hero:after{background:linear-gradient(180deg,rgba(19,35,63,.7),var(--deep) 75%)}
+ .hero .wrap{grid-template-columns:1fr;padding-top:36px;padding-bottom:48px}.book3d{order:-1}.book3d .book{width:220px}}
+
+/* trust strip */
+.trust{background:var(--navy);color:#dfe6f3;font-size:15px}
+.trust .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 30px;padding:16px 20px;text-align:center}
+.trust b{color:#fff}
+
+section{padding:84px 0;scroll-margin-top:70px}
+.sec-head{max-width:720px;margin-bottom:38px}
+.sec-head h2{font-size:clamp(32px,4.4vw,48px);color:var(--navy);margin:10px 0 14px}
+.sec-head p{color:var(--muted);font-size:19px}
+.center{text-align:center;margin-left:auto;margin-right:auto}
+
+/* story */
+.story{background:var(--cream)}
+.story .grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.story p{margin-bottom:16px;font-size:19px}
+.story blockquote{font-family:"Fraunces",serif;font-size:clamp(26px,3.2vw,36px);color:var(--navy);line-height:1.25;border-left:4px solid var(--gold);padding-left:24px}
+.story blockquote small{display:block;font-family:"Source Sans 3",sans-serif;font-size:15px;color:var(--muted);margin-top:14px}
+@media(max-width:860px){.story .grid{grid-template-columns:1fr;gap:28px}}
+
+/* three questions */
+.q3{background:#fff}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--cream);border-radius:18px;padding:28px;border:1px solid var(--line)}
+.card .num{font-family:"Fraunces",serif;font-size:44px;color:var(--gold);line-height:1}
+.card h3{font-size:22px;color:var(--navy);margin:10px 0 8px}
+.card p{color:var(--muted);font-size:17px}
+@media(max-width:860px){.cards{grid-template-columns:1fr}}
+
+/* colors */
+.tiers{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:8px}
+.tier{border-radius:14px;padding:18px;color:#fff;font-size:15px}
+.tier b{display:block;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+@media(max-width:860px){.tiers{grid-template-columns:1fr 1fr}}
+
+/* inside gallery */
+.inside{background:var(--paper)}
+.gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.gallery a{display:block;text-decoration:none;color:var(--ink)}
+.gallery img{border-radius:10px;box-shadow:0 10px 30px rgba(29,52,97,.18);transition:transform .2s}
+.gallery a:hover img{transform:translateY(-4px)}
+.gallery span{display:block;font-size:14px;font-weight:700;margin-top:10px;text-align:center;color:var(--navy)}
+@media(max-width:860px){.gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding-bottom:12px;-webkit-overflow-scrolling:touch}.gallery a{flex:0 0 68%;scroll-snap-align:start}}
+.lightbox{position:fixed;inset:0;background:rgba(10,18,34,.92);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+.lightbox:target{display:flex}
+.lightbox img{max-height:92vh;width:auto;border-radius:8px}
+.lightbox .x{position:absolute;top:14px;right:20px;color:#fff;font-size:40px;text-decoration:none;line-height:1}
+
+/* new */
+.newgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px 40px;list-style:none}
+.newgrid li{position:relative;padding:16px 0 16px 46px;border-bottom:1px solid var(--line)}
+.newgrid li b{color:var(--navy)}
+.newgrid li:before{content:"";position:absolute;left:0;top:18px;width:28px;height:28px;border-radius:8px;background:var(--navy) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3L15 6.5' fill='none' stroke='%23f2b33d' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
+@media(max-width:860px){.newgrid{grid-template-columns:1fr}}
+
+/* contents */
+.toc{background:var(--navy);color:#fff}
+.toc .sec-head h2{color:#fff}.toc .sec-head p{color:#c6d0e3}
+.parts{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.part h3{font-family:"Source Sans 3",sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.part ol{list-style:none;font-size:16px;color:#e3e9f5}
+.part li{padding:3px 0}
+.part li b{color:var(--gold);font-weight:700;margin-right:8px;font-variant-numeric:tabular-nums}
+@media(max-width:960px){.parts{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.parts{grid-template-columns:1fr}}
+
+/* author */
+.author .grid{display:grid;grid-template-columns:260px 1fr;gap:48px;align-items:start}
+.badge{width:220px;height:220px;border-radius:50%;background:var(--navy);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 0 0 8px #fff,0 0 0 10px var(--gold)}
+.badge b{font-family:"Fraunces",serif;font-size:64px;line-height:1;color:var(--gold)}
+.badge small{font-size:14px;letter-spacing:.12em;text-transform:uppercase;margin-top:6px}
+.author p{margin-bottom:16px;font-size:19px}
+@media(max-width:860px){.author .grid{grid-template-columns:1fr}.badge{margin:0 auto}}
+
+/* app */
+.app{background:#fff}
+.app .grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.appcard{background:var(--cream);border:1px solid var(--line);border-radius:22px;padding:30px;display:flex;gap:26px;align-items:flex-start}
+.appcard img{width:110px;height:110px;border-radius:24px;box-shadow:0 12px 30px rgba(29,52,97,.25);flex:none}
+.appcard ul{list-style:none;display:grid;gap:12px;font-size:17px;color:var(--muted)}
+.appcard b{color:var(--navy)}
+@media(max-width:520px){.appcard{flex-direction:column}}
+.appstore{display:inline-flex;align-items:center;gap:12px;background:#000;color:#fff;border-radius:12px;padding:10px 20px;text-decoration:none;font-weight:700}
+.appstore small{display:block;font-size:11px;font-weight:600;opacity:.8}
+@media(max-width:860px){.app .grid{grid-template-columns:1fr}}
+
+/* faq */
+.faq{background:var(--cream)}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:12px}
+.faq summary{cursor:pointer;font-weight:700;color:var(--navy);font-size:18px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";float:right;color:var(--amber);font-size:24px;line-height:1}
+.faq details[open] summary:after{content:"–"}
+.faq details p{margin-top:10px;color:var(--muted)}
+
+/* final cta */
+.final{background:var(--deep);color:#fff;text-align:center}
+.final h2{font-size:clamp(34px,5vw,56px);margin-bottom:14px}
+.final h2 span{color:var(--gold)}
+.final p{color:#c6d0e3;max-width:620px;margin:0 auto 28px;font-size:19px}
+.freecard{margin-top:34px;display:inline-flex;gap:14px;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:14px 20px;text-decoration:none;color:#fff;text-align:left}
+.freecard img{width:54px;border-radius:4px}
+.freecard b{color:var(--gold)}
+
+footer{background:#0d1830;color:#97a3ba;font-size:14px;padding:36px 0}
+footer .links{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:14px}
+footer a{color:#c6d0e3}
+footer p{max-width:900px;margin-bottom:8px}
+
+.soon{display:none}
+body.prelaunch .buy{display:none}
+body.prelaunch .soon{display:inline-flex}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="index.html">You're Not <span>Overreacting</span></a><a class="btn btn-gold" href="index.html">The book</a></div></header>
+<main>
+<section class="app" id="app">
+ <div class="wrap grid">
+  <div>
+   <div class="kicker">Free companion app</div>
+   <h2 class="serif" style="font-size:clamp(30px,4vw,44px);color:var(--navy);margin:10px 0 18px">Should I Worry? for iPhone</h2>
+   <p style="margin-bottom:16px">A free symptom guide from the same ER doctor. Pick your child's age and symptom, answer a few questions, and get a clear, color-coded next step.</p>
+   <p style="margin-bottom:24px;color:var(--muted)">The book teaches you the why. The app is there when you need a quick answer.</p>
+   <a class="appstore" href="https://apps.apple.com/us/app/should-i-worry/id6761658186" rel="noopener"><svg width="22" height="26" viewBox="0 0 384 512" fill="#fff" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg><span><small>Download on the</small>App Store</span></a>
+  </div>
+  <div class="appcard">
+   <img src="app-icon.jpg" alt="Should I Worry? app icon" width="120" height="120">
+   <ul>
+    <li><b>Free symptom guide</b> for fever, breathing, rashes, vomiting, injuries and more</li>
+    <li><b>Age-specific</b> from newborn through school age</li>
+    <li><b>Color-coded next step:</b> watch at home, call, or go</li>
+   </ul>
+  </div>
+  </div>
+ </div>
+</section>
+</main>
+<footer>
+ <div class="wrap">
+  <div class="links"><a href="index.html#faq">FAQ</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms</a><a href="support.html">Support</a><a href="https://apps.apple.com/us/app/should-i-worry/id6761658186">Should I Worry? app</a></div>
+  <p>You're Not Overreacting and Should I Worry? provide general health education. They are not a substitute for professional medical advice, diagnosis or treatment, and do not create a doctor-patient relationship. If you think your child is having a medical emergency, call 911. Poison Control: 1-800-222-1222.</p>
+  <p>© 2026 Oliver Morris, DO. All rights reserved.</p>
+ </div>
+</footer>
+</body>
+</html>
