@@ -183,6 +183,21 @@ section{padding:84px 0;scroll-margin-top:70px}
 .freecard{margin-top:34px;display:inline-flex;gap:14px;align-items:center;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:14px 20px;text-decoration:none;color:#fff;text-align:left}
 .freecard img{width:54px;border-radius:4px}
 .freecard b{color:var(--gold)}
+.optin{position:relative;max-width:640px;margin:26px auto 0;text-align:left;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:22px}
+.optin-head{display:flex;gap:14px;align-items:center;color:#fff;margin-bottom:16px;line-height:1.35}
+.optin-head img{width:58px;border-radius:4px;flex:none}
+.optin-head b{color:var(--gold)}
+.optin-row{display:flex;gap:10px;flex-wrap:wrap}
+.optin-row input{flex:1 1 180px;min-width:0;padding:15px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:#fff;color:var(--ink);font-family:inherit;font-size:17px}
+.optin-row .btn{flex:1 1 100%}
+.optin fieldset{border:0;margin:14px 0 0;padding:0;color:#e9e3d6}
+.optin legend{font-weight:700;font-size:15px;margin-bottom:8px;color:#fff;padding:0}
+.optin label{display:inline-flex;align-items:center;gap:7px;margin:0 14px 8px 0;font-size:15px;cursor:pointer}
+.optin-fine{font-size:13px;color:rgba(255,255,255,.72);margin:10px 0 0}
+.optin .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.optin-msg{margin-top:10px;color:#ffd7cf;font-size:14px}
+.optin-done{text-align:center;color:#fff}
+.optin-done p{margin:0 0 14px;font-size:17px}
 
 footer{background:#0d1830;color:#97a3ba;font-size:14px;padding:36px 0}
 footer .links{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:14px}
@@ -357,7 +372,29 @@ body.prelaunch .soon{display:inline-flex}
   <p>Read it once now, keep it on your phone, and face the next 2 a.m. moment with a plan.</p>
   <a class="btn btn-gold buy" data-buy href="#">Get the 2nd Edition · <span class="price" data-price>$27</span></a>
   <p class="soon" style="margin:0 auto 8px;color:#fff;font-weight:700;justify-content:center;max-width:none">The 2nd Edition launches soon. Start with the free fridge card:</p>
-  <div><a class="freecard" href="assets/When-Every-Second-Counts-Fridge-Card.pdf?v=3" download><img src="assets/pages/quick-reference-sm.jpg?v=3" alt=""><span><b>Free printable:</b> When Every Second Counts<br>The emergency quick reference from page 2</span></a></div>
+  <form class="optin" id="optin" novalidate>
+   <div class="optin-form">
+    <div class="optin-head"><img src="assets/pages/quick-reference-sm.jpg?v=3" alt=""><span><b>Free printable:</b> When Every Second Counts<br>The one-page emergency guide from the book. Print it for the fridge.</span></div>
+    <div class="optin-row">
+     <input name="first_name" placeholder="First name" autocomplete="given-name" aria-label="First name" maxlength="60">
+     <input name="email" type="email" placeholder="Email address" autocomplete="email" aria-label="Email address" required maxlength="120">
+     <input name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+     <button class="btn btn-gold" type="submit">Send me the free card</button>
+    </div>
+    <fieldset><legend>Which emails would help most? (optional)</legend>
+     <label><input type="checkbox" name="interest" value="Getting ready for baby"> Getting ready for baby</label>
+     <label><input type="checkbox" name="interest" value="The newborn weeks"> The newborn weeks</label>
+     <label><input type="checkbox" name="interest" value="Babies and toddlers"> Babies and toddlers</label>
+     <label><input type="checkbox" name="interest" value="Buying a gift"> Buying a gift</label>
+    </fieldset>
+    <p class="optin-fine">You'll get the card right away, plus a few short notes from Dr. Morris. Unsubscribe anytime. We never ask about your child's health.</p>
+    <p class="optin-msg" hidden></p>
+   </div>
+   <div class="optin-done" hidden>
+    <p>Your fridge card is ready. Save it to your phone or print it for the fridge.</p>
+    <a class="btn btn-gold" href="assets/When-Every-Second-Counts-Fridge-Card.pdf?v=3" download>Download the fridge card</a>
+   </div>
+  </form>
  </div>
 </section>
 </main>
@@ -381,6 +418,28 @@ if (CONFIG.BUY_URL) {
   document.querySelectorAll("[data-buy]").forEach(a => { a.href = CONFIG.BUY_URL; });
 }
 document.querySelectorAll("[data-price]").forEach(s => { s.textContent = CONFIG.PRICE; });
+
+/* ---- Free fridge card: email capture (posts to /api/subscribe.php, which adds the contact to GHL) ---- */
+(function () {
+  const f = document.getElementById("optin"); if (!f) return;
+  const msg = f.querySelector(".optin-msg");
+  const done = () => { f.querySelector(".optin-form").hidden = true; f.querySelector(".optin-done").hidden = false; };
+  f.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = f.email.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { msg.textContent = "Please enter a valid email address."; msg.hidden = false; f.email.focus(); return; }
+    msg.hidden = true;
+    const btn = f.querySelector("button[type=submit]"); btn.disabled = true; btn.textContent = "Sending...";
+    const body = { first_name: f.first_name.value.trim(), email, website: f.website.value,
+                   interests: [...f.querySelectorAll("input[name=interest]:checked")].map(c => c.value) };
+    try {
+      const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 8000);
+      await fetch("/api/subscribe.php", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), signal: ctl.signal });
+      clearTimeout(t);
+    } catch (err) { /* never block the download */ }
+    done();
+  });
+})();
 </script>
 </body>
 </html>
