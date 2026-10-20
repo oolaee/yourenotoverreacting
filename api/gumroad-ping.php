@@ -1,5 +1,5 @@
 <?php
-// Gumroad "Ping" (Settings > Advanced) for each sale: adds the buyer to GoHighLevel and tags them.
+// Gumroad "Ping" (Settings > Advanced) for each sale, plus API resource subscriptions for refunds and disputes: adds the buyer to GoHighLevel and tags them.
 //   yno-purchased  always (ends the welcome sequence's sales emails)
 //   yno-buyer      only if the buyer agreed to hear from us at checkout (starts the after-purchase emails)
 //   yno-gift-2pack when they chose the two-copy version
@@ -29,6 +29,7 @@ $variants = is_array($p['variants'] ?? null) ? implode(' ', $p['variants']) : (s
 $twoCopies = stripos($variants, 'Two copies') !== false;
 $canContact = ($p['can_contact'] ?? 'true') !== 'false';
 $refunded = ($p['refunded'] ?? '') === 'true';
+$disputed = ($p['disputed'] ?? '') === 'true' && ($p['dispute_won'] ?? '') !== 'true';
 $day = substr((string)($p['sale_timestamp'] ?? date('c')), 0, 10);
 
 function ghl($method, $path, $body, $cfg) {
@@ -49,6 +50,7 @@ $tags = ['yno-purchased'];
 if ($canContact) $tags[] = 'yno-buyer';
 if ($twoCopies) $tags[] = 'yno-gift-2pack';
 if ($refunded) $tags[] = 'yno-refunded';
+if ($disputed) $tags[] = 'yno-disputed';
 if ($isTest) $tags[] = 'yno-internal-test';
 
 [$c1, $r1, $raw1] = ghl('POST', '/contacts/upsert', $contact, $cfg);
