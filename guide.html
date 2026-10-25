@@ -62,7 +62,7 @@ s{opacity:.6}
 @media(max-width:820px){.hero-grid{grid-template-columns:1fr}.hero .cover{max-width:210px;order:-1}.hero .cta{align-items:center}}
 
 /* letter */
-.letter p:first-of-type::first-letter{font-family:"Fraunces",serif;font-size:3.2em;float:left;line-height:.9;margin:6px 10px 0 0;color:var(--navy)}
+.letter .kicker + p::first-letter{font-family:"Fraunces",serif;font-size:3.2em;float:left;line-height:.9;margin:6px 10px 0 0;color:var(--navy)}
 .pull{font-family:"Fraunces",serif;font-size:25px;line-height:1.35;color:var(--navy);border-left:4px solid var(--gold);padding:4px 0 4px 20px;margin:28px 0}
 
 /* lists */
@@ -112,9 +112,13 @@ s{opacity:.6}
 .stack li em{font-style:normal;color:var(--muted);white-space:nowrap}
 @media(max-width:600px){.stack li{flex-direction:column;gap:0}.stack li em{font-size:15px}}
 .pricebox{text-align:center;margin-top:20px}
-.pricebox .was{font-size:22px;color:var(--muted)}
-.pricebox .now{font-family:"Fraunces",serif;font-size:64px;font-weight:700;color:var(--navy);line-height:1}
-.pricebox .note{font-size:16px;color:var(--sage);font-weight:700;margin-top:6px}
+.pricebox .prices{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap}
+.pricebox .was{display:flex;flex-direction:column;align-items:center;color:var(--muted);font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.pricebox .was b{font-family:"Fraunces",serif;font-size:56px;line-height:1;color:#8a8f9c;text-decoration:line-through;text-decoration-color:var(--coral);text-decoration-thickness:5px;letter-spacing:0;text-transform:none;margin-top:4px}
+.pricebox .now{display:flex;flex-direction:column;align-items:center;color:var(--sage);font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+.pricebox .now b{font-family:"Fraunces",serif;font-size:88px;line-height:1;color:var(--navy);letter-spacing:0;margin-top:4px}
+.pricebox .badge-off{display:inline-block;background:var(--coral);color:#fff;font-weight:800;font-size:17px;padding:8px 18px;border-radius:999px;margin-top:14px}
+.oldp{text-decoration:line-through;text-decoration-color:var(--coral);text-decoration-thickness:3px;opacity:.75;font-weight:800}
 
 /* optin */
 .optin{background:var(--navy);color:#fff;border-radius:22px;padding:32px 26px;display:grid;grid-template-columns:150px 1fr;gap:26px;align-items:center}
@@ -136,6 +140,24 @@ details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:
 summary{font-weight:700;color:var(--navy);cursor:pointer}
 details p{margin:10px 0 0;font-size:17px;color:var(--muted)}
 
+/* media */
+.hero{position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:url(assets/hero-art.jpg) right center/auto 100% no-repeat;opacity:.35}
+.hero .wide{position:relative}
+@media(max-width:820px){.hero:before{background-image:url(assets/hero-art-mobile.jpg);background-size:cover;background-position:center;opacity:.2}}
+.inline-img{float:right;width:42%;margin:6px 0 16px 26px;border-radius:16px;box-shadow:0 18px 40px rgba(19,35,63,.22)}
+.inline-img img{border-radius:16px}
+.inline-img figcaption{font-size:14px;color:var(--muted);text-align:center;margin-top:8px;font-style:italic}
+@media(max-width:640px){.inline-img{float:none;width:100%;margin:10px 0 22px}}
+.reels{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+.reels figure{margin:0}
+.reels video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:18px;background:var(--navy);box-shadow:0 18px 40px rgba(19,35,63,.22)}
+.reels figcaption{text-align:center;font-weight:700;color:var(--navy);margin-top:10px;font-size:16px}
+@media(max-width:700px){.reels{grid-template-columns:repeat(3,72%);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px}.reels figure{scroll-snap-align:center}}
+.split{display:grid;grid-template-columns:1fr 300px;gap:34px;align-items:start}
+.split img{border-radius:18px;box-shadow:0 18px 40px rgba(19,35,63,.2)}
+@media(max-width:760px){.split{grid-template-columns:1fr}.split img{max-width:320px;margin:0 auto}}
+.closer-img{aspect-ratio:4/5;object-fit:cover;width:100%;max-width:340px;margin:0 auto 28px;border-radius:18px;box-shadow:0 20px 50px rgba(0,0,0,.4)}
 footer{background:var(--deep);color:rgba(255,255,255,.7);font-size:14px;padding:34px 0;text-align:center}
 footer a{color:#fff}
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(19,35,63,.97);padding:10px 14px;display:none;justify-content:center;gap:12px;align-items:center;color:#fff;font-weight:700;font-size:15px}
@@ -149,7 +171,7 @@ footer a{color:#fff}
 </head>
 <body>
 
-<div class="bar">Intro price for new parents: <s>$27</s> $17. Instant PDF download.</div>
+<div class="bar">Intro price for new parents: <span class="oldp">$27</span> → $17 (37% off). Instant PDF download.</div>
 
 <section class="hero">
  <div class="wide hero-grid">
@@ -158,8 +180,8 @@ footer a{color:#fff}
    <h1>It's 2 a.m. The thermometer says 101. <em>Do you wait, call, or drive?</em></h1>
    <p class="lead">You're Not Overreacting is the calm, clear guide I wish every parent had before their first scary night. What's normal, what's not, and exactly when to get care.</p>
    <div class="cta">
-    <a class="btn btn-gold" data-buy href="#">Get the book for $17</a>
-    <small>Normally $27 · 140+ page PDF · On your phone in a minute</small>
+    <a class="btn btn-gold" data-buy href="#">Get the book for <span class="oldp" style="opacity:.55">$27</span> $17</a>
+    <small>Regular price <span class="oldp">$27</span> · Save 37% today · 140+ page PDF</small>
    </div>
    <div class="cred"><span>Board-certified in emergency medicine (ABEM)</span><span>578 medical claims fact-checked</span><span>Updated for 2026</span></div>
   </div>
@@ -172,6 +194,7 @@ footer a{color:#fff}
   <p class="kicker">A note from Dr. Oliver Morris, DO</p>
   <p>Your baby is making a sound you've never heard. Or the fever won't come down. Or they've thrown up three times and you can't remember the last wet diaper.</p>
   <p>So you do what everyone does. You grab your phone and search. And within a minute you're reading about meningitis, sepsis and a rare syndrome you've never heard of, because search results don't know your baby. They just show you everything.</p>
+  <figure class="inline-img"><img src="assets/funnel/night-phone.jpg" alt="A mother holding her baby at night, searching on her phone" width="752" height="1344" loading="lazy"><figcaption>Every parent knows this moment.</figcaption></figure>
   <p>Now you're more scared than when you started, and you still don't know the one thing you actually need to know: <b>is this nothing, or is this something?</b></p>
   <p>I see the end of that night all the time. I'm an emergency physician. Close to a decade of shifts, and so many of the families who walk through our doors with a baby start with the same sentence: "I'm sorry, I'm probably overreacting."</p>
   <div class="pull">Usually, they're not overreacting. They just didn't know what to look for. That part can be taught.</div>
@@ -217,6 +240,20 @@ footer a{color:#fff}
   <div class="cta">
    <a class="btn btn-gold" data-buy href="#">Yes, I want the book for $17</a>
    <small>Instant PDF · Read on your phone tonight</small>
+  </div>
+ </div>
+</section>
+
+<section class="paper">
+ <div class="wide">
+  <div class="col" style="padding:0;text-align:center">
+   <p class="kicker">A peek inside</p>
+   <h2>Three things from the book, in 20 seconds each</h2>
+  </div>
+  <div class="reels">
+   <figure><video data-src="assets/funnel/A3-fever-by-age.mp4" poster="assets/funnel/A3-fever-by-age.jpg" muted loop playsinline preload="none"></video><figcaption>Fever, by age</figcaption></figure>
+   <figure><video data-src="assets/funnel/A5-glass-test.mp4" poster="assets/funnel/A5-glass-test.jpg" muted loop playsinline preload="none"></video><figcaption>The glass test</figcaption></figure>
+   <figure><video data-src="assets/funnel/A8-whats-inside.mp4" poster="assets/funnel/A8-whats-inside.jpg" muted loop playsinline preload="none"></video><figcaption>What's inside</figcaption></figure>
   </div>
  </div>
 </section>
@@ -310,7 +347,8 @@ footer a{color:#fff}
 </section>
 
 <section class="paper">
- <div class="col">
+ <div class="wide split" style="max-width:980px">
+  <div>
   <h2>Who this is for</h2>
   <ul class="checks">
    <li>Expecting parents who want to be ready before the first fever, not during it</li>
@@ -323,6 +361,8 @@ footer a{color:#fff}
    <li>Anyone in an emergency right now. Please call 911.</li>
    <li>Parents looking for a replacement for their pediatrician. This helps you know when to call them.</li>
   </ul>
+  </div>
+  <img src="assets/funnel/grandma.jpg" alt="A grandmother rocking a sleeping baby" width="752" height="1344" loading="lazy">
  </div>
 </section>
 
@@ -342,9 +382,11 @@ footer a{color:#fff}
     <li><b>Normal numbers at a glance</b><em>breathing, heart rate, diapers</em></li>
    </ul>
    <div class="pricebox">
-    <div class="was">Regular price <s>$27</s></div>
-    <div class="now">$17</div>
-    <div class="note">You save $10 with the intro price</div>
+    <div class="prices">
+     <div class="was">Regular price<b>$27</b></div>
+     <div class="now">Intro price<b>$17</b></div>
+    </div>
+    <div class="badge-off">Save $10 · 37% off</div>
    </div>
    <div class="cta">
     <a class="btn btn-gold" data-buy href="#">Get the book for $17</a>
@@ -368,11 +410,12 @@ footer a{color:#fff}
 
 <section class="dark">
  <div class="col" style="text-align:center">
+  <img class="closer-img" src="assets/funnel/morning.jpg" alt="A mother and her smiling baby on a sunny morning" width="752" height="1344">
   <h2>You're not overreacting. You just need to know what to look for.</h2>
   <p>Get it now, read the Fever chapter tonight, and put the quick reference on the fridge. You'll feel the difference the next time the thermometer beeps.</p>
   <div class="cta">
    <a class="btn btn-gold" data-buy href="#">Get the book for $17</a>
-   <small><s>$27</s> intro price $17 · Instant PDF</small>
+   <small>Regular price <span class="oldp">$27</span> · Intro price $17 · Instant PDF</small>
   </div>
  </div>
 </section>
@@ -384,7 +427,7 @@ footer a{color:#fff}
  </div>
 </footer>
 
-<div class="sticky"><span><s>$27</s> $17 intro</span><a class="btn btn-gold" data-buy href="#">Get the book</a></div>
+<div class="sticky"><span><span class="oldp">$27</span> $17 · 37% off</span><a class="btn btn-gold" data-buy href="#">Get the book</a></div>
 
 <script>
 const BUY_URL = "https://overreactor.gumroad.com/l/youre-not-overreacting/PARENT17";
@@ -402,6 +445,13 @@ document.querySelectorAll("[data-buy]").forEach(a => {
 // sticky buy bar on mobile once the hero is out of view
 const hero = document.querySelector(".hero"), sticky = document.querySelector(".sticky");
 new IntersectionObserver(([e]) => sticky.classList.toggle("show", !e.isIntersecting)).observe(hero);
+
+// preview videos: load + play only while on screen
+const vio = new IntersectionObserver(es => es.forEach(e => {
+  const v = e.target;
+  if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause();
+}), { threshold: .35 });
+document.querySelectorAll("video[data-src]").forEach(v => vio.observe(v));
 
 // free chapter: email capture (posts to /api/subscribe.php -> GHL), never blocks the download
 (function () {
