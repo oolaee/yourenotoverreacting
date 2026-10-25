@@ -19,6 +19,7 @@ $first = trim(strip_tags((string)($in['first_name'] ?? '')));
 $first = mb_substr(preg_replace("/[^\p{L}\p{M}\s'\-.]/u", '', $first), 0, 60);
 $allowed = ['Getting ready for baby', 'The newborn weeks', 'Babies and toddlers', 'Buying a gift'];
 $interests = array_values(array_intersect($allowed, (array)($in['interests'] ?? [])));
+$magnet = (($in['magnet'] ?? '') === 'fever-chapter') ? 'fever-chapter' : 'fridge-card';   // which free download they asked for; chapter signups also get yno-fridge-card so they enter the welcome + monthly emails
 
 // per-IP rate limit: 6 signups per 10 minutes
 $ip = $_SERVER['HTTP_CF_CONNECTING_IP'] ?? ($_SERVER['REMOTE_ADDR'] ?? 'x');
@@ -38,9 +39,9 @@ function ghl($method, $path, $body, $cfg) {
     return [$code, json_decode($res ?: '[]', true), (string)$res];
 }
 
-$custom = [['id' => $cfg['field_signup_source'], 'field_value' => 'website fridge card']];
+$custom = [['id' => $cfg['field_signup_source'], 'field_value' => $magnet === 'fever-chapter' ? 'funnel fever chapter' : 'website fridge card']];
 if ($interests) $custom[] = ['id' => $cfg['field_email_interest'], 'field_value' => $interests];
-$contact = ['locationId' => $cfg['location'], 'email' => $email, 'source' => 'yourenotoverreacting.com fridge card', 'customFields' => $custom];
+$contact = ['locationId' => $cfg['location'], 'email' => $email, 'source' => 'yourenotoverreacting.com ' . ($magnet === 'fever-chapter' ? 'fever chapter' : 'fridge card'), 'customFields' => $custom];
 if ($first !== '') $contact['firstName'] = $first;
 
 [$c1, $r1, $raw1] = ghl('POST', '/contacts/upsert', $contact, $cfg);
@@ -48,7 +49,7 @@ $id = $r1['contact']['id'] ?? null;
 $ok = $c1 >= 200 && $c1 < 300 && $id;
 $raw2 = '';
 if ($ok) {   // add tags separately so an existing contact keeps its other tags (e.g. yno-buyer)
-    [$c2, , $raw2] = ghl('POST', "/contacts/$id/tags", ['tags' => ['yno-fridge-card', 'yno-lead-site']], $cfg);
+    [$c2, , $raw2] = ghl('POST', "/contacts/$id/tags", ['tags' => $magnet === 'fever-chapter' ? ['yno-free-chapter', 'yno-lead-funnel', 'yno-fridge-card'] : ['yno-fridge-card', 'yno-lead-site']], $cfg);
     $ok = $c2 >= 200 && $c2 < 300;
 }
 if (!$ok) {   // never lose a signup: queue it for retry and log the error
