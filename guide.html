@@ -436,7 +436,14 @@ const href = BUY_URL + (qs ? "?" + qs : "");
 const track = (meta, ga, params) => {
   try { window.fbq && fbq("track", meta, params); } catch (e) {}
   try { window.gtag && gtag("event", ga, params); } catch (e) {}
+  try { window.clarity && clarity("event", ga); } catch (e) {}
 };
+// Clarity filters: funnel vs homepage, and which ad / source sent the visitor
+try {
+  const u = new URLSearchParams(location.search);
+  clarity("set", "page_type", "funnel");
+  ["utm_source", "utm_campaign", "utm_content", "utm_term"].forEach(k => u.get(k) && clarity("set", k, u.get(k)));
+} catch (e) {}
 document.querySelectorAll("[data-buy]").forEach(a => {
   a.href = href;
   a.addEventListener("click", () => track("InitiateCheckout", "begin_checkout",
